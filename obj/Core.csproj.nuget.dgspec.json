@@ -1,0 +1,99 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Code\\Net\\Core\\Core.csproj": {}
+  },
+  "projects": {
+    "D:\\Code\\Net\\Core\\Core.csproj": {
+      "version": "1.0.0-RC",
+      "restore": {
+        "projectUniqueName": "D:\\Code\\Net\\Core\\Core.csproj",
+        "projectName": "ExCore",
+        "projectPath": "D:\\Code\\Net\\Core\\Core.csproj",
+        "packagesPath": "C:\\Users\\Anonymous\\.nuget\\packages\\",
+        "outputPath": "D:\\Code\\Net\\Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Anonymous\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[9.3.0-preview3, )"
+            },
+            "MathNet.Numerics": {
+              "target": "Package",
+              "version": "[4.12.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[3.4.1-dev-00188, )"
+            },
+            "System.Interactive": {
+              "target": "Package",
+              "version": "[4.1.1, )"
+            },
+            "System.Reactive": {
+              "target": "Package",
+              "version": "[5.0.0-preview.220, )"
+            },
+            "Websocket.Client": {
+              "target": "Package",
+              "version": "[4.3.21, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100-rc.2.20479.15\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
