@@ -6,11 +6,6 @@ namespace Core.ModelSpace
   public interface IChartModel : IBaseModel
   {
     /// <summary>
-    /// Define vertical alignment and the center of chart
-    /// </summary>
-    double? ValueCenter { get; set; }
-
-    /// <summary>
     /// Format values on the value axis
     /// </summary>
     Func<dynamic, dynamic> ShowValue { get; set; }
@@ -23,11 +18,6 @@ namespace Core.ModelSpace
 
   public class ChartModel : BaseModel, IChartModel
   {
-    /// <summary>
-    /// Define vertical alignment and the center of chart
-    /// </summary>
-    public virtual double? ValueCenter { get; set; }
-
     /// <summary>
     /// Format values on the value axis
     /// </summary>

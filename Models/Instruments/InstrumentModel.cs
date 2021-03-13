@@ -50,6 +50,11 @@ namespace Core.ModelSpace
     double? SwapShort { get; set; }
 
     /// <summary>
+    /// Leverage or margin rate
+    /// </summary>
+    double? Leverage { get; set; }
+
+    /// <summary>
     /// Commission
     /// </summary>
     double? Commission { get; set; }
@@ -149,6 +154,11 @@ namespace Core.ModelSpace
     /// Short swap rate for keeping position overnight
     /// </summary>
     public virtual double? SwapShort { get; set; }
+
+    /// <summary>
+    /// Leverage or margin rate
+    /// </summary>
+    public virtual double? Leverage { get; set; }
 
     /// <summary>
     /// Commission

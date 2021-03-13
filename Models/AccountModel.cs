@@ -10,11 +10,6 @@ namespace Core.ModelSpace
   public interface IAccountModel : IBaseModel
   {
     /// <summary>
-    /// Leverage
-    /// </summary>
-    double? Leverage { get; set; }
-
-    /// <summary>
     /// Balance
     /// </summary>
     double? Balance { get; set; }
@@ -66,11 +61,6 @@ namespace Core.ModelSpace
   public class AccountModel : BaseModel, IAccountModel
   {
     /// <summary>
-    /// Leverage
-    /// </summary>
-    public virtual double? Leverage { get; set; }
-
-    /// <summary>
     /// Balance
     /// </summary>
     public virtual double? Balance { get; set; }
@@ -121,7 +111,6 @@ namespace Core.ModelSpace
     public AccountModel()
     {
       Balance = 0.0;
-      Leverage = 1.0;
       InitialBalance = 0.0;
       Currency = nameof(CurrencyEnum.USD);
 
@@ -140,7 +129,6 @@ namespace Core.ModelSpace
   {
     public AccountValidation()
     {
-      RuleFor(o => o.Leverage).NotNull().NotEqual(0).WithMessage("No leverage");
       RuleFor(o => o.Balance).NotNull().WithMessage("No balance");
       RuleFor(o => o.InitialBalance).NotNull().WithMessage("No initial balance");
       RuleFor(o => o.Currency).NotNull().WithMessage("No currency");

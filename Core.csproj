@@ -8,26 +8,38 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>1.0.0-RC</Version>
     <Company></Company>
-    <Authors>http://indemos.com</Authors>
+    <Authors>artemiusgreat</Authors>
     <Description>Class library used as a basis for trading-related apps.</Description>
-    <Copyright>Indemos</Copyright>
+    <Copyright>http://indemos.com</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Indemos/ExCore</PackageProjectUrl>
-    <PackageIcon>Atom.png</PackageIcon>
+    <PackageIcon>CoreAtom.png</PackageIcon>
     <RepositoryUrl>https://github.com/Indemos/ExCore</RepositoryUrl>
-    <PackageTags>inance options trading forex stock-market stocks futures</PackageTags>
+    <PackageTags>finance options trading forex stock-market stocks futures</PackageTags>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <FileVersion>1.0.0.1</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <Optimize>false</Optimize>
+    <WarningsAsErrors>NU1605</WarningsAsErrors>
+    <NoWarn>1701;1702</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Screens\Atom.png" />
+    <None Include="Screens\CoreAtom.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentValidation.AspNetCore" Version="9.3.0-preview3" />
@@ -40,10 +52,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\Media\Photo\People-Me\Atom.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
+    <Folder Include="Screens\" />
   </ItemGroup>
 
 </Project>

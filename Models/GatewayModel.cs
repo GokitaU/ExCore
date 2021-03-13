@@ -14,10 +14,15 @@ using Websocket.Client;
 namespace Core.ModelSpace
 {
   /// <summary>
-  /// Generic market data gateway
+  /// Interface that defines input and output processes
   /// </summary>
-  public interface IDataModel
+  public interface IGatewayModel : IStateModel
   {
+    /// <summary>
+    /// Production or Development mode
+    /// </summary>
+    EnvironmentEnum Mode { get; set; }
+
     /// <summary>
     /// Reference to the account
     /// </summary>
@@ -27,17 +32,67 @@ namespace Core.ModelSpace
     /// Incoming data event
     /// </summary>
     ISubject<ITransactionMessage<IPointModel>> DataStream { get; }
-  }
 
-  /// <summary>
-  /// Generic trading gateway
-  /// </summary>
-  public interface ITradeModel
-  {
     /// <summary>
     /// Send order event
     /// </summary>
     ISubject<ITransactionMessage<ITransactionOrderModel>> OrderSenderStream { get; }
+
+    /// <summary>
+    /// Get account data
+    /// </summary>
+    /// <param name="account"></param>
+    /// <returns></returns>
+    Task<IAccountModel> GetAccount(IAccountModel account);
+
+    /// <summary>
+    /// Get history of instrument prices
+    /// </summary>
+    /// <param name="instrument"></param>
+    /// <returns></returns>
+    Task<IInstrumentModel> GetInstrument(IInstrumentModel instrument);
+
+    /// <summary>
+    /// Get prices
+    /// </summary>
+    /// <param name="inputs"></param>
+    /// <returns></returns>
+    Task<IList<IPointModel>> GetPoints(IDictionary<dynamic, dynamic> inputs);
+
+    /// <summary>
+    /// Get orders
+    /// </summary>
+    /// <param name="inputs"></param>
+    /// <returns></returns>
+    Task<IList<ITransactionOrderModel>> GetOrders(IDictionary<dynamic, dynamic> inputs);
+
+    /// <summary>
+    /// Get positions
+    /// </summary>
+    /// <param name="inputs"></param>
+    /// <returns></returns>
+    Task<IList<ITransactionPositionModel>> GetPositions(IDictionary<dynamic, dynamic> inputs);
+
+    /// <summary>
+    /// Get options strikes
+    /// </summary>
+    /// <param name="inputs"></param>
+    /// <returns></returns>
+    Task<IList<double>> GetOptionStrikes(IDictionary<dynamic, dynamic> inputs);
+
+    /// <summary>
+    /// Get options expiration dates
+    /// </summary>
+    /// <param name="inputs"></param>
+    /// <returns></returns>
+    Task<IList<DateTime>> GetOptionExpirations(IDictionary<dynamic, dynamic> inputs);
+
+    /// <summary>
+    /// Get options chain
+    /// </summary>
+    /// <param name="inputs"></param>
+    /// <returns></returns>
+    Task<IList<IInstrumentOptionModel>> GetOptionChains(IDictionary<dynamic, dynamic> inputs);
 
     /// <summary>
     /// Create orders
@@ -59,17 +114,6 @@ namespace Core.ModelSpace
     /// <param name="orders"></param>
     /// <returns></returns>
     Task<IEnumerable<ITransactionOrderModel>> DeleteOrders(params ITransactionOrderModel[] orders);
-  }
-
-  /// <summary>
-  /// Interface that defines input and output processes
-  /// </summary>
-  public interface IGatewayModel : IStateModel, IDataModel, ITradeModel
-  {
-    /// <summary>
-    /// Production or Development mode
-    /// </summary>
-    EnvironmentEnum Mode { get; set; }
   }
 
   /// <summary>
@@ -144,34 +188,81 @@ namespace Core.ModelSpace
     }
 
     /// <summary>
+    /// Get account data
+    /// </summary>
+    /// <param name="account"></param>
+    /// <returns></returns>
+    public abstract Task<IAccountModel> GetAccount(IAccountModel account);
+
+    /// <summary>
+    /// Get history of instrument prices
+    /// </summary>
+    /// <param name="instrument"></param>
+    /// <returns></returns>
+    public abstract Task<IInstrumentModel> GetInstrument(IInstrumentModel instrument);
+
+    /// <summary>
+    /// Get prices
+    /// </summary>
+    /// <param name="inputs"></param>
+    /// <returns></returns>
+    public abstract Task<IList<IPointModel>> GetPoints(IDictionary<dynamic, dynamic> inputs);
+
+    /// <summary>
+    /// Get orders
+    /// </summary>
+    /// <param name="inputs"></param>
+    /// <returns></returns>
+    public abstract Task<IList<ITransactionOrderModel>> GetOrders(IDictionary<dynamic, dynamic> inputs);
+
+    /// <summary>
+    /// Get positions
+    /// </summary>
+    /// <param name="inputs"></param>
+    /// <returns></returns>
+    public abstract Task<IList<ITransactionPositionModel>> GetPositions(IDictionary<dynamic, dynamic> inputs);
+
+    /// <summary>
+    /// Get options strikes
+    /// </summary>
+    /// <param name="inputs"></param>
+    /// <returns></returns>
+    public abstract Task<IList<double>> GetOptionStrikes(IDictionary<dynamic, dynamic> inputs);
+
+    /// <summary>
+    /// Get options expiration dates
+    /// </summary>
+    /// <param name="inputs"></param>
+    /// <returns></returns>
+    public abstract Task<IList<DateTime>> GetOptionExpirations(IDictionary<dynamic, dynamic> inputs);
+
+    /// <summary>
+    /// Get options chain
+    /// </summary>
+    /// <param name="inputs"></param>
+    /// <returns></returns>
+    public abstract Task<IList<IInstrumentOptionModel>> GetOptionChains(IDictionary<dynamic, dynamic> inputs);
+
+    /// <summary>
     /// Create orders
     /// </summary>
     /// <param name="orders"></param>
     /// <returns></returns>
-    public virtual Task<IEnumerable<ITransactionOrderModel>> CreateOrders(params ITransactionOrderModel[] orders)
-    {
-      return Task.FromResult(orders as IEnumerable<ITransactionOrderModel>);
-    }
+    public abstract Task<IEnumerable<ITransactionOrderModel>> CreateOrders(params ITransactionOrderModel[] orders);
 
     /// <summary>
     /// Update orders
     /// </summary>
     /// <param name="orders"></param>
     /// <returns></returns>
-    public virtual Task<IEnumerable<ITransactionOrderModel>> UpdateOrders(params ITransactionOrderModel[] orders)
-    {
-      return Task.FromResult(orders as IEnumerable<ITransactionOrderModel>);
-    }
+    public abstract Task<IEnumerable<ITransactionOrderModel>> UpdateOrders(params ITransactionOrderModel[] orders);
 
     /// <summary>
     /// Close or cancel orders
     /// </summary>
     /// <param name="orders"></param>
     /// <returns></returns>
-    public virtual Task<IEnumerable<ITransactionOrderModel>> DeleteOrders(params ITransactionOrderModel[] orders)
-    {
-      return Task.FromResult(orders as IEnumerable<ITransactionOrderModel>);
-    }
+    public abstract Task<IEnumerable<ITransactionOrderModel>> DeleteOrders(params ITransactionOrderModel[] orders);
 
     /// <summary>
     /// Ensure that each series has a name and can be attached to specific area on the chart

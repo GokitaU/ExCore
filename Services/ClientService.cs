@@ -30,13 +30,13 @@ namespace Core.ModelSpace
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="source"></param>
-    /// <param name="query"></param>
+    /// <param name="inputs"></param>
     /// <param name="headers"></param>
     /// <param name="cts"></param>
     /// <returns></returns>
     Task<T> Get<T>(
       string source,
-      IDictionary<dynamic, dynamic> query = null,
+      IDictionary<dynamic, dynamic> inputs = null,
       IDictionary<dynamic, dynamic> headers = null,
       CancellationTokenSource cts = null);
 
@@ -45,14 +45,14 @@ namespace Core.ModelSpace
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="source"></param>
-    /// <param name="query"></param>
+    /// <param name="inputs"></param>
     /// <param name="headers"></param>
     /// <param name="content"></param>
     /// <param name="cts"></param>
     /// <returns></returns>
     Task<T> Post<T>(
       string source,
-      IDictionary<dynamic, dynamic> query = null,
+      IDictionary<dynamic, dynamic> inputs = null,
       IDictionary<dynamic, dynamic> headers = null,
       HttpContent content = null,
       CancellationTokenSource cts = null);
@@ -62,13 +62,13 @@ namespace Core.ModelSpace
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="source"></param>
-    /// <param name="query"></param>
+    /// <param name="inputs"></param>
     /// <param name="headers"></param>
     /// <param name="cts"></param>
     /// <returns></returns>
     Task<Stream> Stream(
       string source,
-      IDictionary<dynamic, dynamic> query = null,
+      IDictionary<dynamic, dynamic> inputs = null,
       IDictionary<dynamic, dynamic> headers = null,
       CancellationTokenSource cts = null);
   }
@@ -98,17 +98,17 @@ namespace Core.ModelSpace
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="source"></param>
-    /// <param name="query"></param>
+    /// <param name="inputs"></param>
     /// <param name="headers"></param>
     /// <param name="cts"></param>
     /// <returns></returns>
     public async Task<T> Get<T>(
       string source,
-      IDictionary<dynamic, dynamic> query = null,
+      IDictionary<dynamic, dynamic> inputs = null,
       IDictionary<dynamic, dynamic> headers = null,
       CancellationTokenSource cts = null)
     {
-      return ConversionManager.Deserialize<T>(await Send(HttpMethod.Get, source, query, headers, null, cts).ConfigureAwait(false));
+      return ConversionManager.Deserialize<T>(await Send(HttpMethod.Get, source, inputs, headers, null, cts).ConfigureAwait(false));
     }
 
     /// <summary>
@@ -116,19 +116,19 @@ namespace Core.ModelSpace
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="source"></param>
-    /// <param name="query"></param>
+    /// <param name="inputs"></param>
     /// <param name="headers"></param>
     /// <param name="content"></param>
     /// <param name="cts"></param>
     /// <returns></returns>
     public async Task<T> Post<T>(
       string source,
-      IDictionary<dynamic, dynamic> query = null,
+      IDictionary<dynamic, dynamic> inputs = null,
       IDictionary<dynamic, dynamic> headers = null,
       HttpContent content = null,
       CancellationTokenSource cts = null)
     {
-      return ConversionManager.Deserialize<T>(await Send(HttpMethod.Post, source, query, headers, content, cts).ConfigureAwait(false));
+      return ConversionManager.Deserialize<T>(await Send(HttpMethod.Post, source, inputs, headers, content, cts).ConfigureAwait(false));
     }
 
     /// <summary>
@@ -136,13 +136,13 @@ namespace Core.ModelSpace
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="source"></param>
-    /// <param name="query"></param>
+    /// <param name="inputs"></param>
     /// <param name="headers"></param>
     /// <param name="cts"></param>
     /// <returns></returns>
     public async Task<Stream> Stream(
       string source,
-      IDictionary<dynamic, dynamic> query = null,
+      IDictionary<dynamic, dynamic> inputs = null,
       IDictionary<dynamic, dynamic> headers = null,
       CancellationTokenSource cts = null)
     {
@@ -159,7 +159,7 @@ namespace Core.ModelSpace
         }
 
         return await client
-          .GetStreamAsync(source + "?" + ConversionManager.GetQuery(query), cancellation)
+          .GetStreamAsync(source + "?" + ConversionManager.GetQuery(inputs), cancellation)
           .ConfigureAwait(false);
       }
     }
@@ -177,25 +177,23 @@ namespace Core.ModelSpace
     /// </summary>
     /// <param name="queryType"></param>
     /// <param name="source"></param>
-    /// <param name="query"></param>
+    /// <param name="inputs"></param>
     /// <param name="content"></param>
     /// <param name="cts"></param>
     /// <returns></returns>
     protected async Task<Stream> Send(
       HttpMethod queryType,
       string source,
-      IDictionary<dynamic, dynamic> query = null,
+      IDictionary<dynamic, dynamic> inputs = null,
       IDictionary<dynamic, dynamic> headers = null,
       HttpContent content = null,
       CancellationTokenSource cts = null)
     {
-      _client.Timeout = Timeout;
-
       var message = new HttpRequestMessage
       {
         Content = content,
         Method = queryType,
-        RequestUri = new Uri(source + "?" + ConversionManager.GetQuery(query))
+        RequestUri = new Uri(source + "?" + ConversionManager.GetQuery(inputs))
       };
 
       if (headers is IEnumerable)

@@ -10,11 +10,6 @@ namespace Core.ModelSpace
   public interface IInstrumentOptionModel : IInstrumentModel
   {
     /// <summary>
-    /// Contract size
-    /// </summary>
-    double? Leverage { get; set; }
-
-    /// <summary>
     /// Open interest
     /// </summary>
     double? OpenInterest { get; set; }
@@ -42,7 +37,7 @@ namespace Core.ModelSpace
     /// <summary>
     /// Reference to the complex data point
     /// </summary>
-    IPointBarModel Bar { get; set; }
+    IInstrumentOptionGreekModel Greeks { get; set; }
   }
 
   /// <summary>
@@ -50,11 +45,6 @@ namespace Core.ModelSpace
   /// </summary>
   public class InstrumentOptionModel : InstrumentModel, IInstrumentOptionModel
   {
-    /// <summary>
-    /// Contract size
-    /// </summary>
-    public virtual double? Leverage { get; set; }
-
     /// <summary>
     /// Open interest
     /// </summary>
@@ -83,15 +73,14 @@ namespace Core.ModelSpace
     /// <summary>
     /// Reference to the complex data point
     /// </summary>
-    public virtual IPointBarModel Bar { get; set; }
+    public virtual IInstrumentOptionGreekModel Greeks { get; set; }
 
     /// <summary>
     /// Constructor
     /// </summary>
     public InstrumentOptionModel()
     {
-      Leverage = 100;
-      Bar = new PointBarModel();
+      Greeks = new InstrumentOptionGreekModel();
     }
   }
 
