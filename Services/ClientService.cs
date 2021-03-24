@@ -86,7 +86,7 @@ namespace Core.ModelSpace
     /// <summary>
     /// Max execution time
     /// </summary>
-    public TimeSpan Timeout { get; set; } = TimeSpan.FromSeconds(5);
+    public TimeSpan Timeout { get; set; } = TimeSpan.FromSeconds(15);
 
     /// <summary>
     /// Logger instance

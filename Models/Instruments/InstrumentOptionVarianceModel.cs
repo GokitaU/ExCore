@@ -1,5 +1,3 @@
-using System;
-using Core.EnumSpace;
 using FluentValidation;
 
 namespace Core.ModelSpace
@@ -7,7 +5,7 @@ namespace Core.ModelSpace
   /// <summary>
   /// Definition
   /// </summary>
-  public interface IInstrumentOptionGreekModel : IBaseModel
+  public interface IInstrumentOptionVarianceModel : IBaseModel
   {
     /// <summary>
     /// Delta
@@ -58,7 +56,7 @@ namespace Core.ModelSpace
   /// <summary>
   /// Implementation
   /// </summary>
-  public class InstrumentOptionGreekModel : BaseModel, IInstrumentOptionGreekModel
+  public class InstrumentOptionVarianceModel : BaseModel, IInstrumentOptionVarianceModel
   {
     /// <summary>
     /// Delta
@@ -109,9 +107,9 @@ namespace Core.ModelSpace
   /// <summary>
   /// Validation rules
   /// </summary>
-  public class InstrumentOptionGreekValidation : AbstractValidator<IInstrumentOptionGreekModel>
+  public class InstrumentOptionVarianceValidation : AbstractValidator<IInstrumentOptionVarianceModel>
   {
-    public InstrumentOptionGreekValidation()
+    public InstrumentOptionVarianceValidation()
     {
     }
   }

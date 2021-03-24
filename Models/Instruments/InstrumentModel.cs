@@ -10,34 +10,14 @@ namespace Core.ModelSpace
   public interface IInstrumentModel : IBaseModel
   {
     /// <summary>
-    /// Bid price
+    /// Volume
     /// </summary>
-    double? Bid { get; set; }
+    double? Volume { get; set; }
 
     /// <summary>
-    /// Ask price
+    /// Open interest
     /// </summary>
-    double? Ask { get; set; }
-
-    /// <summary>
-    /// Current price
-    /// </summary>
-    double? Price { get; set; }
-
-    /// <summary>
-    /// Bid volume
-    /// </summary>
-    double? BidSize { get; set; }
-
-    /// <summary>
-    /// Ask volume
-    /// </summary>
-    double? AskSize { get; set; }
-
-    /// <summary>
-    /// Overal volume
-    /// </summary>
-    double? Size { get; set; }
+    double? OpenInterest { get; set; }
 
     /// <summary>
     /// Long swap rate for keeping position overnight
@@ -90,14 +70,9 @@ namespace Core.ModelSpace
     IChartDataModel ChartData { get; set; }
 
     /// <summary>
-    /// Reference to option model
+    /// Current price data
     /// </summary>
-    IInstrumentOptionModel Option { get; set; }
-
-    /// <summary>
-    /// Reference to future model
-    /// </summary>
-    IInstrumentFutureModel Future { get; set; }
+    IPointModel Point { get; set; }
 
     /// <summary>
     /// List of all ticks from the server
@@ -116,34 +91,14 @@ namespace Core.ModelSpace
   public class InstrumentModel : BaseModel, IInstrumentModel
   {
     /// <summary>
-    /// Bid price
+    /// Volume
     /// </summary>
-    public virtual double? Bid { get; set; }
+    public virtual double? Volume { get; set; }
 
     /// <summary>
-    /// Ask price
+    /// Open interest
     /// </summary>
-    public virtual double? Ask { get; set; }
-
-    /// <summary>
-    /// Current price
-    /// </summary>
-    public virtual double? Price { get; set; }
-
-    /// <summary>
-    /// Bid volume
-    /// </summary>
-    public virtual double? BidSize { get; set; }
-
-    /// <summary>
-    /// Ask volume
-    /// </summary>
-    public virtual double? AskSize { get; set; }
-
-    /// <summary>
-    /// Overal volume
-    /// </summary>
-    public virtual double? Size { get; set; }
+    public virtual double? OpenInterest { get; set; }
 
     /// <summary>
     /// Long swap rate for keeping position overnight
@@ -196,14 +151,9 @@ namespace Core.ModelSpace
     public virtual IChartDataModel ChartData { get; set; }
 
     /// <summary>
-    /// Reference to option model
+    /// Current price data
     /// </summary>
-    public virtual IInstrumentOptionModel Option { get; set; }
-
-    /// <summary>
-    /// Reference to future model
-    /// </summary>
-    public virtual IInstrumentFutureModel Future { get; set; }
+    public virtual IPointModel Point { get; set; }
 
     /// <summary>
     /// List of all ticks from the server
@@ -227,6 +177,7 @@ namespace Core.ModelSpace
       Commission = 0.0;
       ContractSize = 1.0;
 
+      Point = new PointModel();
       ChartData = new ChartDataModel();
       Points = new TimeSpanCollection<IPointModel>();
       PointGroups = new TimeSpanCollection<IPointModel>();

@@ -39,25 +39,25 @@ namespace Core.ModelSpace
     ISubject<ITransactionMessage<ITransactionOrderModel>> OrderSenderStream { get; }
 
     /// <summary>
-    /// Get account data
-    /// </summary>
-    /// <param name="account"></param>
-    /// <returns></returns>
-    Task<IAccountModel> GetAccount(IAccountModel account);
-
-    /// <summary>
-    /// Get history of instrument prices
-    /// </summary>
-    /// <param name="instrument"></param>
-    /// <returns></returns>
-    Task<IInstrumentModel> GetInstrument(IInstrumentModel instrument);
-
-    /// <summary>
     /// Get prices
     /// </summary>
     /// <param name="inputs"></param>
     /// <returns></returns>
     Task<IList<IPointModel>> GetPoints(IDictionary<dynamic, dynamic> inputs);
+
+    /// <summary>
+    /// Get accounts
+    /// </summary>
+    /// <param name="inputs"></param>
+    /// <returns></returns>
+    Task<IList<IAccountModel>> GetAccounts(IDictionary<dynamic, dynamic> inputs);
+
+    /// <summary>
+    /// Get instruments
+    /// </summary>
+    /// <param name="inputs"></param>
+    /// <returns></returns>
+    Task<IList<IInstrumentModel>> GetInstruments(IDictionary<dynamic, dynamic> inputs);
 
     /// <summary>
     /// Get orders
@@ -78,14 +78,14 @@ namespace Core.ModelSpace
     /// </summary>
     /// <param name="inputs"></param>
     /// <returns></returns>
-    Task<IList<double>> GetOptionStrikes(IDictionary<dynamic, dynamic> inputs);
+    Task<IList<double>> GetOptionPrices(IDictionary<dynamic, dynamic> inputs);
 
     /// <summary>
     /// Get options expiration dates
     /// </summary>
     /// <param name="inputs"></param>
     /// <returns></returns>
-    Task<IList<DateTime>> GetOptionExpirations(IDictionary<dynamic, dynamic> inputs);
+    Task<IList<DateTime>> GetOptionDates(IDictionary<dynamic, dynamic> inputs);
 
     /// <summary>
     /// Get options chain
@@ -188,25 +188,25 @@ namespace Core.ModelSpace
     }
 
     /// <summary>
-    /// Get account data
-    /// </summary>
-    /// <param name="account"></param>
-    /// <returns></returns>
-    public abstract Task<IAccountModel> GetAccount(IAccountModel account);
-
-    /// <summary>
-    /// Get history of instrument prices
-    /// </summary>
-    /// <param name="instrument"></param>
-    /// <returns></returns>
-    public abstract Task<IInstrumentModel> GetInstrument(IInstrumentModel instrument);
-
-    /// <summary>
     /// Get prices
     /// </summary>
     /// <param name="inputs"></param>
     /// <returns></returns>
     public abstract Task<IList<IPointModel>> GetPoints(IDictionary<dynamic, dynamic> inputs);
+
+    /// <summary>
+    /// Get account data
+    /// </summary>
+    /// <param name="inputs"></param>
+    /// <returns></returns>
+    public abstract Task<IList<IAccountModel>> GetAccounts(IDictionary<dynamic, dynamic> inputs);
+
+    /// <summary>
+    /// Get history of instrument prices
+    /// </summary>
+    /// <param name="inputs"></param>
+    /// <returns></returns>
+    public abstract Task<IList<IInstrumentModel>> GetInstruments(IDictionary<dynamic, dynamic> inputs);
 
     /// <summary>
     /// Get orders
@@ -227,14 +227,14 @@ namespace Core.ModelSpace
     /// </summary>
     /// <param name="inputs"></param>
     /// <returns></returns>
-    public abstract Task<IList<double>> GetOptionStrikes(IDictionary<dynamic, dynamic> inputs);
+    public abstract Task<IList<double>> GetOptionPrices(IDictionary<dynamic, dynamic> inputs);
 
     /// <summary>
     /// Get options expiration dates
     /// </summary>
     /// <param name="inputs"></param>
     /// <returns></returns>
-    public abstract Task<IList<DateTime>> GetOptionExpirations(IDictionary<dynamic, dynamic> inputs);
+    public abstract Task<IList<DateTime>> GetOptionDates(IDictionary<dynamic, dynamic> inputs);
 
     /// <summary>
     /// Get options chain

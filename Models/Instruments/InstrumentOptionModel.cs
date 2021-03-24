@@ -10,11 +10,6 @@ namespace Core.ModelSpace
   public interface IInstrumentOptionModel : IInstrumentModel
   {
     /// <summary>
-    /// Open interest
-    /// </summary>
-    double? OpenInterest { get; set; }
-
-    /// <summary>
     /// Strike price
     /// </summary>
     double? Strike { get; set; }
@@ -37,7 +32,7 @@ namespace Core.ModelSpace
     /// <summary>
     /// Reference to the complex data point
     /// </summary>
-    IInstrumentOptionGreekModel Greeks { get; set; }
+    IInstrumentOptionVarianceModel Greeks { get; set; }
   }
 
   /// <summary>
@@ -45,11 +40,6 @@ namespace Core.ModelSpace
   /// </summary>
   public class InstrumentOptionModel : InstrumentModel, IInstrumentOptionModel
   {
-    /// <summary>
-    /// Open interest
-    /// </summary>
-    public virtual double? OpenInterest { get; set; }
-
     /// <summary>
     /// Strike price
     /// </summary>
@@ -73,14 +63,14 @@ namespace Core.ModelSpace
     /// <summary>
     /// Reference to the complex data point
     /// </summary>
-    public virtual IInstrumentOptionGreekModel Greeks { get; set; }
+    public virtual IInstrumentOptionVarianceModel Greeks { get; set; }
 
     /// <summary>
     /// Constructor
     /// </summary>
     public InstrumentOptionModel()
     {
-      Greeks = new InstrumentOptionGreekModel();
+      Greeks = new InstrumentOptionVarianceModel();
     }
   }
 

@@ -29,6 +29,11 @@ namespace Core.ModelSpace
     double? AskSize { get; set; }
 
     /// <summary>
+    /// Current price
+    /// </summary>
+    double? Price { get; set; }
+
+    /// <summary>
     /// Reference to the complex data point
     /// </summary>
     IPointBarModel Bar { get; set; }
@@ -78,6 +83,11 @@ namespace Core.ModelSpace
     /// Volume of the ask
     /// </summary>
     public virtual double? AskSize { get; set; }
+
+    /// <summary>
+    /// Current price
+    /// </summary>
+    public virtual double? Price { get; set; }
 
     /// <summary>
     /// Reference to the complex data point
