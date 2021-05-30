@@ -32,7 +32,7 @@ namespace Core.ModelSpace
     /// <summary>
     /// Reference to the complex data point
     /// </summary>
-    IInstrumentOptionVarianceModel Greeks { get; set; }
+    IInstrumentOptionVarianceModel Variance { get; set; }
   }
 
   /// <summary>
@@ -63,14 +63,14 @@ namespace Core.ModelSpace
     /// <summary>
     /// Reference to the complex data point
     /// </summary>
-    public virtual IInstrumentOptionVarianceModel Greeks { get; set; }
+    public virtual IInstrumentOptionVarianceModel Variance { get; set; }
 
     /// <summary>
     /// Constructor
     /// </summary>
     public InstrumentOptionModel()
     {
-      Greeks = new InstrumentOptionVarianceModel();
+      Variance = new InstrumentOptionVarianceModel();
     }
   }
 

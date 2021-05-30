@@ -10,9 +10,14 @@ namespace Core.ModelSpace
   public interface IInstrumentModel : IBaseModel
   {
     /// <summary>
-    /// Volume
+    /// Daily volume
     /// </summary>
     double? Volume { get; set; }
+
+    /// <summary>
+    /// Average volume for a period of time
+    /// </summary>
+    double? AverageVolume { get; set; }
 
     /// <summary>
     /// Open interest
@@ -91,9 +96,14 @@ namespace Core.ModelSpace
   public class InstrumentModel : BaseModel, IInstrumentModel
   {
     /// <summary>
-    /// Volume
+    /// Daily volume
     /// </summary>
     public virtual double? Volume { get; set; }
+
+    /// <summary>
+    /// Average volume for a period of time
+    /// </summary>
+    public virtual double? AverageVolume { get; set; }
 
     /// <summary>
     /// Open interest
